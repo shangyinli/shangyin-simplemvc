@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lendle
  */
-@WebServlet(name = "ShowScore", urlPatterns = {"/score"})
+@WebServlet(name = "ShowScore", urlPatterns = {"/ShowScore"})
 public class ShowScore extends HttpServlet {
 
     /**
@@ -31,9 +31,20 @@ public class ShowScore extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id=request.getParameter("id");
-        String address=null;
+        Student student=Student.getStudent(id);
+        if(student==null){
+            request.getRequestDispatcher("/WEB-INF/score-report/UnknownStudent.jsp").forward(request, response);
+        }else{
+            request.setAttribute("student", student);
+            if(student.getScore()<51){
+                request.getRequestDispatcher("/WEB-INF/score-report/LowScore.jsp").forward(request, response);
+            }else if(student.getScore()>79){
+                request.getRequestDispatcher("/WEB-INF/score-report/HighScore.jsp").forward(request, response);
+            }else{
+                request.getRequestDispatcher("/WEB-INF/score-report/NormalScore.jsp").forward(request, response);
+            }
+        }
         //按照分數選擇頁面
-        request.getRequestDispatcher(address).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
