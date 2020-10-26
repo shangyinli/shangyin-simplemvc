@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lendle
  */
-@WebServlet(name = "ShowScore", urlPatterns = {"/ShowScore"})
+@WebServlet(name = "ShowScore", urlPatterns = {"/score"})
 public class ShowScore extends HttpServlet {
 
     /**
