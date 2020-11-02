@@ -8,7 +8,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form method="post" action="ShowScore">
+        <form method="post" action="ShowScore"><!--action 吃的是網址斜線後的pattern-->
             Student ID:<input type="text" name="id"/><br/>
             <input type="submit"/>
         </form>
